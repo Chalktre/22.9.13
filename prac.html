@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            position: relative;
+        }
+        .box {
+            margin: 0 auto;
+            width: 300px;
+            height: 50px;
+        }
+        .box a {
+            color: black;
+            text-decoration: none;
+        }
+
+
+        .up {
+            display: none;
+            position: fixed;
+            /* margin   : 130px auto; */
+            left: 50%;
+            top: 50%;
+            width: 500px;
+            height: 300px;
+            background-color: white;
+            border-radius: 5px;
+            transform: translate(-50%, -50%);
+        }
+        .he {
+            width: 500px;
+            height: 35px;
+            margin-top: 10px;
+            cursor: move;
+            text-align: center;
+            font-size: larger;
+            /* margin-left: 200px; */
+        }
+
+        .inp {
+            margin: 20px;
+        }
+        .inp input {
+            display: inline-block;
+            height: 25px;
+            width: 300px;
+            border: 1px solid #999;
+        }
+
+        .btn {
+            margin: 30px auto;
+            height: 30px;
+            width: 200px;
+            border: 1px solid #999;
+            text-align: center;
+            line-height: 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"><a href="#" class="link">click to login in</a></div>
+    
+    <div class="up">
+        <div class="he">login in</div>
+        <div class="inp">
+            user name : <input type="text" >
+            <br>
+            <br>
+
+            &nbsp;&nbsp;password : <input type="text" >
+        </div>
+        <div class="btn">login</div>
+    </div>
+
+    <script>
+        var body = document.querySelector('body')
+        var login = document.querySelector('.link')
+        var up = document.querySelector('.up')
+        var btn = document.querySelector('.btn')
+        var he = document.querySelector(".he")
+        console.log(login);
+        login.addEventListener('click', function(){
+            up.style.display = 'block'
+            body.style.backgroundColor = 'gray'
+        })
+
+        btn.addEventListener('click', function(){
+            location.assign('https://www.jd.com')
+        })
+        // mousedown 激活mousemove，.he和鼠标同步移动 mousemove监测pageX和pageY
+        he.addEventListener('mousedown', function(e){
+            var x = e.pageX - up.offsetLeft
+            var y = e.pageY - up.offsetTop
+            function move (e) {                
+                up.style.left = e.pageX - x + 'px'
+                up.style.top = e.pageY - y + 'px'
+
+            }
+            
+            document.addEventListener('mousemove', move)
+            document.addEventListener('mouseup', function(e) {
+                document.removeEventListener('mousemove', move)
+        })
+
+        })
+    </script>
+</body>
+</html>
